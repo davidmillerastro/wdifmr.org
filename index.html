@@ -2,134 +2,588 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Open Cluster White Dwarf Initial–Final Mass Relation</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="A maintained resource for empirical white dwarf initial–final mass relation data, fitted relations, documentation, and software."
+  >
+
+  <title>White Dwarf Initial–Final Mass Relation</title>
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #172033;
-      background: #f4f6f8;
-      line-height: 1.6;
+    :root {
+      --navy: #13243a;
+      --navy-light: #203d5f;
+      --blue: #2e628f;
+      --blue-light: #eaf2f8;
+      --background: #f4f6f8;
+      --text: #1d2733;
+      --muted: #5d6977;
+      --border: #d9e0e7;
+      --white: #ffffff;
+      --shadow: 0 12px 32px rgba(19, 36, 58, 0.10);
     }
 
-    main {
-      width: min(900px, calc(100% - 40px));
-      margin: 60px auto;
-      padding: 50px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--blue);
+    }
+
+    .site-header {
+      background:
+        linear-gradient(
+          135deg,
+          var(--navy) 0%,
+          var(--navy-light) 100%
+        );
+      color: var(--white);
+      padding: 76px 24px 68px;
+    }
+
+    .header-content {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b8d2e8;
+    }
+
     h1 {
-      margin-top: 0;
-      font-size: 2.6rem;
-      line-height: 1.15;
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
     }
 
-    h2 {
-      margin-top: 42px;
+    .intro {
+      max-width: 760px;
+      margin: 24px 0 0;
+      font-size: clamp(1.08rem, 2vw, 1.3rem);
+      color: #d9e6f0;
     }
 
-    .subtitle {
-      max-width: 720px;
-      font-size: 1.2rem;
-      color: #4e5a68;
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
     }
 
     .button {
       display: inline-block;
-      margin-top: 12px;
       padding: 13px 20px;
-      background: #263d66;
-      color: white;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
+      transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
     }
 
-    .notice {
-      margin-top: 30px;
-      padding: 18px;
-      background: #eef3f8;
-      border-left: 4px solid #263d66;
+    .button:hover {
+      transform: translateY(-1px);
     }
 
-    footer {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 1px solid #d9dfe6;
-      color: #657080;
+    .button-primary {
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    .button-secondary {
+      border-color: rgba(255, 255, 255, 0.45);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .button-small {
+      padding: 10px 15px;
       font-size: 0.95rem;
     }
 
-    @media (max-width: 600px) {
-      main {
-        margin: 20px auto;
-        padding: 28px 22px;
+    .page {
+      width: min(1080px, calc(100% - 36px));
+      margin: -32px auto 70px;
+    }
+
+    .release-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 28px 30px;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .release-label {
+      margin: 0 0 5px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .release-card h2 {
+      margin: 0;
+      font-size: 1.55rem;
+    }
+
+    .release-card p {
+      margin: 7px 0 0;
+      color: var(--muted);
+    }
+
+    section {
+      margin-top: 64px;
+    }
+
+    .section-heading {
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .figure-card {
+      padding: 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 7px 22px rgba(19, 36, 58, 0.06);
+    }
+
+    .figure-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+      padding: 40px;
+      border: 2px dashed #b9c7d4;
+      border-radius: 7px;
+      background: #f8fafc;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .figure-placeholder strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .figure-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .caption {
+      margin: 18px 2px 0;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .file-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .file-card {
+      padding: 23px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .file-card h3 {
+      margin: 0 0 7px;
+      font-size: 1.08rem;
+    }
+
+    .file-card p {
+      margin: 0 0 17px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .citation-box {
+      padding: 28px;
+      background: var(--blue-light);
+      border-left: 5px solid var(--blue);
+      border-radius: 7px;
+    }
+
+    .citation-box p {
+      margin-top: 0;
+    }
+
+    .citation {
+      margin-bottom: 0;
+      padding: 17px 19px;
+      background: var(--white);
+      border: 1px solid #cadbe8;
+      border-radius: 5px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+    }
+
+    .about-card {
+      padding: 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .about-card h3 {
+      margin-top: 0;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      margin-top: 70px;
+      padding: 30px 0 10px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        padding-top: 55px;
       }
 
-      h1 {
-        font-size: 2rem;
+      .release-card {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .figure-placeholder {
+        min-height: 280px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <h1>The White Dwarf Initial–Final Mass Relation</h1>
 
-    <p class="subtitle">
-      A maintained resource for empirical white dwarf initial–final
-      mass relation measurements, fitted relations, documentation,
-      and supporting tools.
-    </p>
+  <header class="site-header">
+    <div class="header-content">
 
-    <div class="notice">
-      The first public release is currently being prepared.
+      <p class="eyebrow">Open scientific data resource</p>
+
+      <h1>
+        White Dwarf Initial–Final Mass Relation
+      </h1>
+
+      <p class="intro">
+        A maintained resource for empirical white dwarf
+        initial–final mass relation measurements, fitted relations,
+        documentation, and supporting software.
+      </p>
+
+      <div class="header-actions">
+        <a
+          class="button button-primary"
+          href="#downloads"
+        >
+          View latest release
+        </a>
+
+        <a
+          class="button button-secondary"
+          href="#citation"
+        >
+          Citation information
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="release-card">
+      <div>
+        <p class="release-label">Current release</p>
+
+        <h2>Miller et al. published IFMR sample</h2>
+
+        <p>
+          Version 1.0 · Initial website release · July 2026
+        </p>
+      </div>
+
+      <a
+        class="button button-small button-primary"
+        href="#downloads"
+        style="background:#13243a; color:#ffffff;"
+      >
+        Download data
+      </a>
     </div>
 
-    <h2>Current release</h2>
 
-    <p>
-      The latest published IFMR table and supporting documentation
-      will be available here.
-    </p>
+    <section id="relation">
 
-    <a class="button" href="#">
-      Download current IFMR table
-    </a>
+      <div class="section-heading">
+        <h2>Current empirical IFMR</h2>
 
-    <h2>Documentation</h2>
+        <p>
+          The latest published measurements of the relationship
+          between stellar initial mass and white dwarf final mass.
+        </p>
+      </div>
 
-    <p>
-      A detailed README describing the sample, columns, units,
-      assumptions, models, and citation requirements will be added here.
-    </p>
+      <div class="figure-card">
 
-    <h2>Citation</h2>
+        <!--
+          Replace this placeholder with an image later:
 
-    <p>
-      Citation information for the current published data release
-      will appear here.
-    </p>
+          <img
+            src="figures/wdifmr_v1.0.png"
+            alt="White dwarf initial–final mass relation"
+          >
+        -->
 
-    <h2>About</h2>
+        <div class="figure-placeholder">
+          <div>
+            <strong>IFMR figure coming next</strong>
 
-    <p>
-      This resource is maintained by David Miller and is intended to
-      provide a stable, versioned location for empirical white dwarf
-      initial–final mass relation data and software.
-    </p>
+            Upload the figure to the repository and we will place it
+            here.
+          </div>
+        </div>
+
+        <p class="caption">
+          The displayed relation and underlying measurements are
+          based on the published cluster white dwarf sample described
+          in Miller et al.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section id="downloads">
+
+      <div class="section-heading">
+        <h2>Downloads</h2>
+
+        <p>
+          The release will include the machine-readable table,
+          complete documentation, citation files, and publication
+          links.
+        </p>
+      </div>
+
+      <div class="file-grid">
+
+        <article class="file-card">
+          <h3>IFMR table</h3>
+
+          <p>
+            Machine-readable empirical initial and final masses,
+            uncertainties, cluster information, and quality fields.
+          </p>
+
+          <a href="#">
+            CSV download coming shortly
+          </a>
+        </article>
+
+
+        <article class="file-card">
+          <h3>Documentation</h3>
+
+          <p>
+            Detailed descriptions of every column, adopted models,
+            assumptions, sample selection, and recommended usage.
+          </p>
+
+          <a href="#">
+            README coming shortly
+          </a>
+        </article>
+
+
+        <article class="file-card">
+          <h3>Figure files</h3>
+
+          <p>
+            Publication-quality versions of the current IFMR figure
+            for viewing and reference.
+          </p>
+
+          <a href="#">
+            PNG and PDF coming shortly
+          </a>
+        </article>
+
+
+        <article class="file-card">
+          <h3>Citation files</h3>
+
+          <p>
+            BibTeX and citation guidance for use of the published
+            measurements and fitted relation.
+          </p>
+
+          <a href="#">
+            BibTeX coming shortly
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+
+    <section id="citation">
+
+      <div class="section-heading">
+        <h2>How to cite</h2>
+
+        <p>
+          Users of the current data release should cite the paper
+          describing the measurements and analysis.
+        </p>
+      </div>
+
+      <div class="citation-box">
+
+        <p>
+          <strong>Please cite:</strong>
+        </p>
+
+        <p class="citation">
+          Miller et al., “The White Dwarf Initial–Final Mass Relation
+          from Open Clusters in Gaia DR3,”
+          <em>The Astrophysical Journal</em>.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section id="about">
+
+      <div class="section-heading">
+        <h2>About this resource</h2>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-card">
+          <h3>Purpose</h3>
+
+          <p>
+            WDIFMR.org is intended to provide a stable and accessible
+            location for empirical white dwarf initial–final mass
+            relation measurements.
+          </p>
+
+          <p>
+            Future releases will add updated samples, Python
+            implementations of commonly used IFMRs, plotting tools,
+            and other resources useful for stellar-evolution
+            research.
+          </p>
+        </div>
+
+
+        <div class="about-card">
+          <h3>Maintainer</h3>
+
+          <p>
+            <strong>David Miller</strong><br>
+            Department of Physics and Astronomy<br>
+            University of British Columbia
+          </p>
+        </div>
+
+      </div>
+    </section>
+
 
     <footer>
-      White Dwarf Initial–Final Mass Relation · wdifmr.org
+      <div class="footer-row">
+        <span>
+          White Dwarf Initial–Final Mass Relation
+        </span>
+
+        <span>
+          wdifmr.org
+        </span>
+      </div>
     </footer>
+
   </main>
+
 </body>
 </html>
