@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta
     name="description"
     content="Open-cluster white dwarf initial-final mass relation data and resources."
@@ -13,7 +14,7 @@
   <style>
     body {
       margin: 0;
-      background: #d6e5ef;
+      background: #173b57;
       color: #17212b;
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.55;
@@ -23,8 +24,8 @@
       max-width: 880px;
       margin: 40px auto;
       padding: 36px 42px 44px;
-      background: #eef5f9;
-      border: 1px solid #aebfcb;
+      background: white;
+      border: 1px solid #102b40;
     }
 
     h1 {
@@ -54,8 +55,13 @@
       margin: 24px auto 0;
     }
 
+    .figure-links {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
     .updated {
-      margin-top: 10px;
       color: #4f5f6b;
       font-size: 0.92rem;
     }
@@ -63,7 +69,7 @@
     footer {
       margin-top: 44px;
       padding-top: 16px;
-      border-top: 1px solid #aebfcb;
+      border-top: 1px solid #b8c4cc;
       font-size: 0.95rem;
     }
 
@@ -71,8 +77,7 @@
       main {
         margin: 0;
         padding: 26px 20px 38px;
-        border-left: 0;
-        border-right: 0;
+        border: 0;
       }
 
       h1 {
@@ -92,15 +97,18 @@
       with documentation, references, and related tools.
     </p>
 
-    <p class="updated">
-      Last updated: July 2026
-    </p>
-
     <img
       class="ifmr-figure"
       src="files/wdifmr_v1.0.png"
       alt="Current open-cluster white dwarf initial-final mass relation"
     >
+
+    <div class="figure-links">
+      Download figure:
+      <a href="files/wdifmr_v1.0.pdf" download>PDF</a>
+      |
+      <a href="files/wdifmr_v1.0.png" download>PNG</a>
+    </div>
 
     <h2>IFMR</h2>
 
@@ -111,6 +119,10 @@
       uncertainties, quality information, and relevant references.
       Full definitions and methodological details are provided in the
       accompanying README.
+    </p>
+
+    <p class="updated">
+      Last updated: July 2026
     </p>
 
     <div class="links">
@@ -128,7 +140,8 @@
       and cite the relevant publications associated with any used data.
       The latest release uses results from Miller et al. 2026a
       (<a href="https://ui.adsabs.harvard.edu/abs/2026ApJ...996...69M">
-      2026ApJ...996...69M</a>)
+        2026ApJ...996...69M
+      </a>)
       and Miller et al. 2026b
       (<a href="#">ADS link forthcoming</a>).
     </p>
